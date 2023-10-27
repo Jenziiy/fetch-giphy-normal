@@ -10,6 +10,7 @@
   <button>Renew image</button>
   <input maxlength="10" name="search" id="search" cols="30" rows="10" placeholder="search query here"></textarea>
   <script>
+    let queryParamTopicName = 'pikachu';
 // prevent whitespaces in search
   const field = document.querySelector('[name="search"]');
   field.addEventListener('keypress', function ( event ) {  
@@ -18,22 +19,22 @@
       event.preventDefault();
     }
   });
-    const img = document.querySelector('img');
-    fetch('https://api.giphy.com/v1/gifs/translate?api_key=0rAsbwH3i7285Zch6HeplahChR0fzjvJ&s=pikachu&weirdness=6', {mode:'cors'} )
+    img = document.querySelector('img');
+   function getImage(){ fetch(`https://api.giphy.com/v1/gifs/translate?api_key=0rAsbwH3i7285Zch6HeplahChR0fzjvJ&s=${queryParamTopicName}&weirdness=6`, {mode:'cors'} )
     .then((response)=>{
       return response.json();
     })
     .then((response)=>{
       img.src = response.data.images.original.url;
-    })
+    }) }
     const button = document.querySelector('button');
-    button.addEventListener('click', () => fetch('https://api.giphy.com/v1/gifs/translate?api_key=0rAsbwH3i7285Zch6HeplahChR0fzjvJ&s=pikachu&weirdness=6', {mode:'cors'} )
-    .then((response)=>{
-      return response.json();
-    })
-    .then((response)=>{
-      img.src = response.data.images.original.url;
-    }))
+    button.addEventListener('click', () => { if (queryParamTopicName.length > 0) getImage()});
+    queryInput = document.querySelector('input');
+    queryInput.addEventListener('input',  (e) => {
+    queryParamTopicName = queryInput.value;
+    if (queryInput.value) getImage(); } );
+    //getImage on page load/refresh
+    getImage();
   </script>
   
 </body>
