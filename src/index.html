@@ -7,12 +7,24 @@
 </head>
 <body>
   <img src="#">
+  <button>Renew image</button>
   <script>
     const img = document.querySelector('img');
-    fetch('https://api.giphy.com/v1/gifs/translate?api_key=0rAsbwH3i7285Zch6HeplahChR0fzjvJ&s=cat&weirdness=4')
+    fetch('https://api.giphy.com/v1/gifs/translate?api_key=0rAsbwH3i7285Zch6HeplahChR0fzjvJ&s=pikachu&weirdness=6', {mode:'cors'} )
     .then((response)=>{
-      console.log(response.json());
-    });
+      return response.json();
+    })
+    .then((response)=>{
+      img.src = response.data.images.original.url;
+    })
+    const button = document.querySelector('button');
+    button.addEventListener('click', () => fetch('https://api.giphy.com/v1/gifs/translate?api_key=0rAsbwH3i7285Zch6HeplahChR0fzjvJ&s=pikachu&weirdness=6', {mode:'cors'} )
+    .then((response)=>{
+      return response.json();
+    })
+    .then((response)=>{
+      img.src = response.data.images.original.url;
+    }))
   </script>
   
 </body>
