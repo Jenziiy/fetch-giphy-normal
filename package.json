@@ -1,0 +1,11 @@
+{
+  "name": "fetch-giphy-normal",
+  "version": "1.0.0",
+  "description": "fetch giphy translate",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "jeanine",
+  "license": "ISC"
+}
