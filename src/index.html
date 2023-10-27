@@ -24,15 +24,19 @@
     .then((response)=>{
       return response.json();
     })
+    .catch((error) => { console.error('woops something couldnt be fetched', error) } )
     .then((response)=>{
-      img.src = response.data.images.original.url;
-    }) }
+      if (response.data == 0) {console.log('common');throw new Error('oopsiedaisy, no gif could be found');}
+      Promise.resolve( img.src = response.data.images.original.url);
+    })
+    .catch((error) => { console.error('woops something couldnt be fetched', error) } )}
     const button = document.querySelector('button');
     button.addEventListener('click', () => { if (queryParamTopicName.length > 0) getImage()});
     queryInput = document.querySelector('input');
     queryInput.addEventListener('input',  (e) => {
     queryParamTopicName = queryInput.value;
-    if (queryInput.value) getImage(); } );
+   // if (queryInput.value) 
+    getImage(); } );
     //getImage on page load/refresh
     getImage();
   </script>
