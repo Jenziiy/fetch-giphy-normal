@@ -8,7 +8,16 @@
 <body>
   <img src="#">
   <button>Renew image</button>
+  <input maxlength="10" name="search" id="search" cols="30" rows="10" placeholder="search query here"></textarea>
   <script>
+// prevent whitespaces in search
+  const field = document.querySelector('[name="search"]');
+  field.addEventListener('keypress', function ( event ) {  
+   const key = event.keyCode;
+    if (key === 32) {
+      event.preventDefault();
+    }
+  });
     const img = document.querySelector('img');
     fetch('https://api.giphy.com/v1/gifs/translate?api_key=0rAsbwH3i7285Zch6HeplahChR0fzjvJ&s=pikachu&weirdness=6', {mode:'cors'} )
     .then((response)=>{
